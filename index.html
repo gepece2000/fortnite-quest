@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fortnite Quest</title>
+<style>
+body {
+  background: #0b0f1a;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 40px;
+}
+.locked { color: #ff5555; }
+.unlocked { color: #55ff88; }
+.box {
+  border: 2px solid #555;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+</style>
+</head>
+
+<body>
+<div class="box" id="content"></div>
+
+<script>
+const unlockHour = 9;
+const unlockMinute = 30;
+
+const now = new Date();
+const unlocked =
+  now.getHours() > unlockHour ||
+  (now.getHours() === unlockHour && now.getMinutes() >= unlockMinute);
+
+const content = document.getElementById("content");
+
+if (!unlocked) {
+  content.innerHTML = `
+    <h2 class="locked">🔒 QUEST BLOCAT</h2>
+    <p>Battle Bus nu a plecat încă.</p>
+    <p>Misiunea începe la <b>09:30</b>.</p>
+    <p>Ora curentă: <b>${now.toLocaleTimeString()}</b></p>
+    <p>Revino mai târziu.</p>
+  `;
+} else {
+  content.innerHTML = `
+    <h2 class="unlocked">🟢 QUEST DEBLOCAT</h2>
+    <p><b>MISIUNEA 1 – START</b></p>
+    <p>Rezolvă codul:</p>
+    <h3>100 ÷ 4 + 5 = ?</h3>
+    <p>CODUL = pagina unde se află următorul QR.</p>
+  `;
+}
+</script>
+</body>
+</html>
